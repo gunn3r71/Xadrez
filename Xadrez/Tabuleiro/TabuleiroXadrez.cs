@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Xadrez.Tabuleiro.Exceptions;
 
 namespace Xadrez.Tabuleiro
 {
@@ -21,15 +22,36 @@ namespace Xadrez.Tabuleiro
             pecas = new Peca[linhas, colunas];
         }
 
-        public Peca GetPeca(int linha, int coluna)
+        public Peca GetPeca(Posicao posicao)
         {
-            return pecas[linha,coluna];
+            return pecas[posicao.Linha,posicao.Coluna];
         }
 
         public void SetPeca(Peca peca, Posicao posicao)
         {
+            if (ExistePeca(posicao))
+                throw new TabuleiroException("Já existe uma peça nessa posição");
             pecas[posicao.Linha, posicao.Coluna] = peca;
             peca.Posicao = posicao;
+        }
+
+        public bool ExistePeca(Posicao posicao)
+        {
+            this.ValidaPosicao(posicao);
+            return  GetPeca(posicao) != null;
+        }
+
+        public bool PosicaoValida(Posicao posicao)
+        {
+            if (posicao.Linha < 0 || posicao.Linha > this.Linhas || posicao.Coluna > this.Colunas)
+                return false;
+            return true;
+        }
+
+        public void ValidaPosicao(Posicao posicao)
+        {
+            if (!this.PosicaoValida(posicao))
+                throw new TabuleiroException("Posição escolhida é inválida");
         }
     }
 }

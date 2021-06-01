@@ -11,7 +11,7 @@ namespace Xadrez
             {
                 for (int j = 0; j < tabuleiro.Colunas; j++)
                 {
-                    Console.Write((tabuleiro.GetPeca(i,j) != null) ? $"{tabuleiro.GetPeca(i, j)} " : $"- "); ;
+                    Console.Write((tabuleiro.GetPeca(new Posicao(i,j)) != null) ? $"{tabuleiro.GetPeca(new Posicao(i, j))} " : $"- "); ;
                 }
                 Console.WriteLine();
             }
