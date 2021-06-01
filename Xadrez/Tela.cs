@@ -24,7 +24,7 @@ namespace Xadrez
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine("   a b c d e f g h");
+            Console.WriteLine("\n   a b c d e f g h");
         }
 
         public static void ImprimirPeca(Peca peca)

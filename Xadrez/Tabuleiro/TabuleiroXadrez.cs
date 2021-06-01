@@ -35,6 +35,17 @@ namespace Xadrez.Tabuleiro
             peca.Posicao = posicao;
         }
 
+        public Peca RetirarPeca(Posicao posicao)
+        {
+            if (GetPeca(posicao) == null)
+                return null;
+            var aux = GetPeca(posicao);
+            aux.Posicao = null;
+            pecas[posicao.Linha, posicao.Coluna] = null;
+
+            return aux;
+        }
+
         public bool ExistePeca(Posicao posicao)
         {
             this.ValidaPosicao(posicao);

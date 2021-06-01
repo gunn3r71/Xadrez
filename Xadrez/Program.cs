@@ -9,21 +9,26 @@ namespace Xadrez
     {
         static void Main(string[] args)
         {
-            try
+            var partida = new PartidaXadrez();
+            while (true)
             {
-                var tabuleiro = new TabuleiroXadrez(8, 8);
-                tabuleiro.SetPeca(new Torre(Cor.Preta, tabuleiro), new Posicao(0, 0));
-                tabuleiro.SetPeca(new Bispo(Cor.Preta, tabuleiro), new Posicao(0, 1));
-                tabuleiro.SetPeca(new Cavalo(Cor.Preta, tabuleiro), new Posicao(0, 2));
-                tabuleiro.SetPeca(new Rainha(Cor.Preta, tabuleiro), new Posicao(0, 3));
-                tabuleiro.SetPeca(new Rei(Cor.Preta, tabuleiro), new Posicao(0, 4));
-                tabuleiro.SetPeca(new Bispo(Cor.Preta, tabuleiro), new Posicao(0, 5));
+                try
+                {
+        
+                    Tela.ImprimirTabuleiro(partida.Tabuleiro);
 
-                Tela.ImprimirTabuleiro(tabuleiro);
-            }
-            catch (TabuleiroException ex)
-            {
-                Console.WriteLine(ex.Message);
+                    Console.Write("Posição origem, ex(a 2): ");
+                    var origem = Console.ReadLine().Split(" ");
+                    Console.Write("Posição destino, ex(a 4): ");
+                    var destino = Console.ReadLine().Split(" ");
+
+                    partida.ExcecutaMovimento(new PosicaoXadrez(char.Parse(origem[0]),int.Parse(origem[1])), new PosicaoXadrez(char.Parse(destino[0]), int.Parse(destino[1])));
+                    Console.Clear();
+                }
+                catch (TabuleiroException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
             }
         }
     }
