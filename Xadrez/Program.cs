@@ -10,25 +10,23 @@ namespace Xadrez
         static void Main(string[] args)
         {
             var partida = new PartidaXadrez();
-            while (true)
+            try 
             {
-                try
+                while (!partida.Terminada)
                 {
-        
-                    Tela.ImprimirTabuleiro(partida.Tabuleiro);
-
-                    Console.Write("Posição origem, ex(a 2): ");
-                    var origem = Console.ReadLine().Split(" ");
-                    Console.Write("Posição destino, ex(a 4): ");
-                    var destino = Console.ReadLine().Split(" ");
-
-                    partida.ExcecutaMovimento(new PosicaoXadrez(char.Parse(origem[0]),int.Parse(origem[1])), new PosicaoXadrez(char.Parse(destino[0]), int.Parse(destino[1])));
                     Console.Clear();
+                    Tela.ImprimirTabuleiro(partida.Tabuleiro);
+                    Console.Write("Origem: ");
+                    var origem = Tela.LerPosicaoXadrez();
+                    Console.Write("Destino: ");
+                    var destino = Tela.LerPosicaoXadrez();
+
+                    partida.ExcecutaMovimento(origem,destino);
                 }
-                catch (TabuleiroException ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
+            }
+            catch (TabuleiroException ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
     }

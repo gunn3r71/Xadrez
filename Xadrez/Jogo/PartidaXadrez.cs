@@ -8,6 +8,7 @@ namespace Xadrez.Jogo
     class PartidaXadrez
     {
         public TabuleiroXadrez Tabuleiro { get; set; }
+        public bool Terminada { get; private set; }
         private int _turno;
     
         private Cor _jogadorAtual;
@@ -15,6 +16,7 @@ namespace Xadrez.Jogo
         public PartidaXadrez()
         {
             this.Tabuleiro = new TabuleiroXadrez(8, 8);
+            this.Terminada = false;
             _turno = 1;
             _jogadorAtual = Cor.Branca;
             this.InserirPecasTabuleiro();
